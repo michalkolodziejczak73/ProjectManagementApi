@@ -69,37 +69,40 @@ opcjonalnie identyfikator przypisanego użytkownika.
 
 Każde zadanie należy do jednego projektu i może zostać przypisane do jednego użytkownika.
 
-Zasady dostępu
+## Zasady dostępu
 
 Zalogowany użytkownik widzi:
 
-projekty, których jest właścicielem,
-projekty, w których ma przypisane co najmniej jedno zadanie.
+* projekty, których jest właścicielem,
+* projekty, w których ma przypisane co najmniej jedno zadanie.
 
-Właściciel projektu może:
+### Właściciel projektu może:
 
-przeglądać projekt,
-edytować projekt,
-usunąć projekt,
-tworzyć zadania,
-edytować zadania,
-przypisywać zadania użytkownikom,
-usuwać zadania.
+* przeglądać projekt,
+* edytować projekt,
+* usuwać projekt,
+* tworzyć zadania,
+* edytować zadania,
+* przypisywać zadania użytkownikom,
+* usuwać zadania.
 
-Użytkownik przypisany do zadania może:
+### Użytkownik przypisany do zadania może:
 
-zobaczyć projekt, w którym znajduje się jego zadanie,
-zobaczyć przypisane zadanie,
-edytować dane i status swojego zadania.
+* zobaczyć projekt, w którym znajduje się jego zadanie,
+* zobaczyć przypisane zadanie,
+* edytować dane i status swojego zadania.
 
-Przypisany użytkownik nie może:
+### Użytkownik przypisany do zadania nie może:
 
-usunąć projektu,
-edytować projektu,
-utworzyć zadania w cudzym projekcie,
-usunąć zadania,
-zmienić użytkownika przypisanego do zadania.
-Struktura projektu
+* usuwać projektu,
+* edytować projektu,
+* tworzyć zadań w cudzym projekcie,
+* usuwać zadań,
+* zmieniać użytkownika przypisanego do zadania.
+
+## Struktura projektu
+
+```text
 ProjectManagementApi
 │
 ├── Controllers
@@ -129,32 +132,41 @@ ProjectManagementApi
 ├── Program.cs
 ├── appsettings.json
 └── ProjectManagementApi.csproj
+```
 
-Endpointy uwierzytelniania
-Metoda	Endpoint	Opis
-POST	/api/Auth/register	Rejestracja użytkownika
-POST	/api/Auth/login	Logowanie i pobranie tokenu JWT
-Endpointy projektów
+## Endpointy uwierzytelniania
 
-Wszystkie endpointy projektów wymagają tokenu JWT.
+| Metoda | Endpoint             | Opis                            |
+| ------ | -------------------- | ------------------------------- |
+| POST   | `/api/Auth/register` | Rejestracja nowego użytkownika  |
+| POST   | `/api/Auth/login`    | Logowanie i pobranie tokenu JWT |
 
-Metoda	Endpoint	Opis
-GET	/api/Projects	Pobiera dostępne projekty
-GET	/api/Projects/{id}	Pobiera wybrany projekt
-POST	/api/Projects	Tworzy nowy projekt
-PUT	/api/Projects/{id}	Aktualizuje projekt
-DELETE	/api/Projects/{id}	Usuwa projekt
-Endpointy zadań
+## Endpointy projektów
 
-Wszystkie endpointy zadań wymagają tokenu JWT.
+Wszystkie endpointy projektów wymagają poprawnego tokenu JWT.
 
-Metoda	Endpoint	Opis
-GET	/api/Tasks	Pobiera dostępne zadania
-GET	/api/Tasks/{id}	Pobiera wybrane zadanie
-GET	/api/Tasks/project/{projectId}	Pobiera zadania projektu
-POST	/api/Tasks	Tworzy nowe zadanie
-PUT	/api/Tasks/{id}	Aktualizuje zadanie
-DELETE	/api/Tasks/{id}	Usuwa zadanie
+| Metoda | Endpoint             | Opis                                      |
+| ------ | -------------------- | ----------------------------------------- |
+| GET    | `/api/Projects`      | Pobiera projekty dostępne dla użytkownika |
+| GET    | `/api/Projects/{id}` | Pobiera wybrany projekt                   |
+| POST   | `/api/Projects`      | Tworzy nowy projekt                       |
+| PUT    | `/api/Projects/{id}` | Aktualizuje projekt                       |
+| DELETE | `/api/Projects/{id}` | Usuwa projekt                             |
+
+## Endpointy zadań
+
+Wszystkie endpointy zadań wymagają poprawnego tokenu JWT.
+
+| Metoda | Endpoint                         | Opis                                     |
+| ------ | -------------------------------- | ---------------------------------------- |
+| GET    | `/api/Tasks`                     | Pobiera zadania dostępne dla użytkownika |
+| GET    | `/api/Tasks/{id}`                | Pobiera wybrane zadanie                  |
+| GET    | `/api/Tasks/project/{projectId}` | Pobiera zadania wskazanego projektu      |
+| POST   | `/api/Tasks`                     | Tworzy nowe zadanie                      |
+| PUT    | `/api/Tasks/{id}`                | Aktualizuje zadanie                      |
+| DELETE | `/api/Tasks/{id}`                | Usuwa zadanie                            |
+
+
 Wymagania
 
 Do uruchomienia projektu potrzebne są:
